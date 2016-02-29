@@ -49,10 +49,16 @@ metadata {
         standardTile("refresh", "device.status", inactiveLabel:false, decoration:"flat") {
             state "default", icon:"st.secondary.refresh", action:"Refresh.refresh"
         }
+        standardTile("channelUp", "device.status", inactiveLabel:false, decoration:"flat") {
+            state "default", label:'BBC1', icon:"st.thermostat.thermostat-up", action:"TV.channelUp"
+        }
+        standardTile("channelDown", "device.status", inactiveLabel:false, decoration:"flat") {
+            state "default", label:'C4', icon:"st.thermostat.thermostat-up", action:"TV.channelDown"
+        }
         
         main (["mute"])
         
-		details(["volumeDown", "volumeUp", "mute", "refresh"])
+		details(["volumeDown", "volumeUp", "mute", "refresh","channelUp","channelDown"])
 	}
 }
 
@@ -79,6 +85,19 @@ def parse(String description)
 
 }
 
+def channelUp() 
+{
+	log.debug "Executing 'channelUp' (BBC1)"
+	return sendCommand(17)
+}
+
+def channelDown() 
+{
+	log.debug "Executing 'channelDown' (C4)"
+	return sendCommand(20)
+}
+
+
 // handle commands
 def volumeUp() 
 {
@@ -92,17 +111,6 @@ def volumeDown()
 	return sendCommand(3)
 }
 
-def channelUp() 
-{
-	log.debug "Executing 'channelUp'"
-	
-}
-
-def channelDown() 
-{
-	log.debug "Executing 'channelDown'"
-	// TODO: handle 'channelDown' command
-}
 
 def refresh() 
 {

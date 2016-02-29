@@ -62,7 +62,7 @@ def televisionAuthenticate()
 {
 	tvRequestPairingKey()
     
-    return dynamicPage(name:"televisionDiscovery", title:"LG TV Search Started!", nextPage:"", install:true){
+    return dynamicPage(name:"televisionAuthenticate", title:"LG TV Search Started!", nextPage:"", install:true){
         section("We sent an pairing request to your TV. Please enter the pairing key and click Done."){
         	input "pairingKey", "string", defaultValue:"DDTYGF", required:true, title:"Pairing Key", multiple:false
         }
